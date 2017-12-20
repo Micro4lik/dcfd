@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dungeon_crawler", "dungeon_crawler.csproj", "{61C36F9E-EB91-797F-2D83-4CF95BE8942F}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dungeon_crawler", "Assembly-CSharp.csproj", "{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{61C36F9E-EB91-797F-2D83-4CF95BE8942F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61C36F9E-EB91-797F-2D83-4CF95BE8942F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61C36F9E-EB91-797F-2D83-4CF95BE8942F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61C36F9E-EB91-797F-2D83-4CF95BE8942F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

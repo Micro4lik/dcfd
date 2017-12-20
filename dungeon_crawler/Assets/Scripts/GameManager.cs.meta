@@ -1,12 +1,16 @@
 fileFormatVersion: 2
 guid: 0fa8dbe92bb88cd49a28faedc2645259
-timeCreated: 1513610538
+timeCreated: 1513785734
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - playerPrefab: {fileID: 114313754826258058, guid: a5738fedc500e7547b2fef52a660935d,
+      type: 2}
+  - StartPrefab: {fileID: 1693509147462744, guid: b7d5d7c39e1b1be459f11fd8fe3e1f6a,
+      type: 2}
+  - FinishPrefab: {fileID: 1044635382220494, guid: 6571f75f7bc10c94fa3ce7570bbef7d8,
       type: 2}
   - mazePrefab: {fileID: 114271581733830430, guid: 71a331cb6ed9f034a8a6788438388a06,
       type: 2}

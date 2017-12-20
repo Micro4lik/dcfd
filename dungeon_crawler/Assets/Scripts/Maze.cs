@@ -11,7 +11,7 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell cellPrefab;
 
-	private MazeCell[,] cells;
+	public MazeCell[,] cells;
 
 	public float generationStepDelay; //задержка при создании либаринта, чтобы было интересно смотреть за генерацией
 
@@ -30,10 +30,10 @@ public class Maze : MonoBehaviour {
 
 	private void DoNextGenerationStep (List<MazeCell> activeCells) { 
 		//int currentIndex = activeCells.Count - 1;
-		int currentIndex = (activeCells.Count - 1)/GrowingTreeIndex; //Growing Tree algorithm (можно выбирать средний или случайный индекс)
+		int currentIndex = (activeCells.Count - 1)/GrowingTreeIndex; //Growing Tree algorithm (можно выбирать средний или случайный индекс для интересных эффектов)
 		MazeCell currentCell = activeCells[currentIndex];
 		if (currentCell.IsFullyInitialized) {
-			activeCells.RemoveAt(currentIndex);
+			activeCells.RemoveAt(currentIndex); //натыкаемся на существующую клетку, и для продолжения генерации, надо удалить индекс из листа
 			return;
 		}
 		MazeDirection direction = currentCell.RandomUninitializedDirection;
@@ -106,6 +106,7 @@ public class Maze : MonoBehaviour {
 		newCell.coordinates = coordinates;
 		newCell.name = "Maze Cell " + coordinates.x + ", " + coordinates.z;
 		newCell.transform.parent = transform;
+
 		newCell.transform.localPosition =
 			new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
 		return newCell;
