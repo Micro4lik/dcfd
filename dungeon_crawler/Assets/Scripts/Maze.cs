@@ -81,7 +81,8 @@ public class Maze : MonoBehaviour {
 
 	public IEnumerator Generate () {
 		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
-		cells = new MazeCell[size.x, size.z];
+		cells = new MazeCell[GameManager.MazeSize, GameManager.MazeSize];
+		//cells = new MazeCell[size.x, size.z];
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
 		while (activeCells.Count > 0) {
@@ -92,12 +93,14 @@ public class Maze : MonoBehaviour {
 
 	public IntVector2 RandomCoordinates {
 		get {
-			return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+			//return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+			return new IntVector2(Random.Range(0, GameManager.MazeSize), Random.Range(0, GameManager.MazeSize));
 		}
 	}
 
 	public bool ContainsCoordinates (IntVector2 coordinate) {
-		return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
+		//return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
+		return coordinate.x >= 0 && coordinate.x < GameManager.MazeSize && coordinate.z >= 0 && coordinate.z < GameManager.MazeSize;
 	}
 
 	private MazeCell CreateCell (IntVector2 coordinates) {
@@ -108,7 +111,8 @@ public class Maze : MonoBehaviour {
 		newCell.transform.parent = transform;
 
 		newCell.transform.localPosition =
-			new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
+			new Vector3(coordinates.x - GameManager.MazeSize * 0.5f + 0.5f, 0f, coordinates.z - GameManager.MazeSize * 0.5f + 0.5f);
+			//new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
 		return newCell;
 	}
 }

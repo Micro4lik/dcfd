@@ -7,12 +7,10 @@ public class FinishSpot : MonoBehaviour {
 	//public GameManager NewLevel;
 
 	void OnTriggerEnter(Collider col) {
-		Debug.Log ("2222");
-		//GameManager.
 		GameManager.LevelCount += 1;
+		if (GameManager.MazeSize != 10)
+		GameManager.MazeSize += 1;
 		GameManager.Q = 1;
-		//NewLevel.
-		//RestartGame ();
 	}
 
 

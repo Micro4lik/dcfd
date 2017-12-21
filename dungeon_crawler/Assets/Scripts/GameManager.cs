@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	private void Update () {
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			LevelCount = 0;
+			GameManager.MazeSize = 4;
 			/*if (Q == 0) {
 				Q = 1;
 				StartCoroutine(BeginGame());
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject InfoPanel;
 	public Text LevelNumber;
 	public static int LevelCount = 0;
+	public static int MazeSize = 4;
 
 	private Player playerInstance;
 
@@ -106,7 +108,6 @@ public class GameManager : MonoBehaviour {
 	}*/
 
 	private IEnumerator BeginGame () {		
-		Debug.Log ("123");
 		mazeInstance = Instantiate(mazePrefab) as Maze;
 		yield return StartCoroutine(mazeInstance.Generate());
 		playerInstance = Instantiate(playerPrefab) as Player;
@@ -118,6 +119,8 @@ public class GameManager : MonoBehaviour {
 		playerInstance.SetLocation(mazeInstance.cells[r1,r2]);
 		StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
 		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[r3,r4].transform.position, Quaternion.identity);
+
+		//Debug.Log (mazeInstance.size.x + " " + mazeInstance.size.z);
 	}
 		
 	public void RestartGame () {
