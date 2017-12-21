@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,9 +11,22 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine(BeginGame());
 	}
 
+	public static int Q = 0;
+
 	private void Update () {
 		if (Input.GetKeyDown(KeyCode.Space)) {
+			LevelCount = 0;
+			/*if (Q == 0) {
+				Q = 1;
+				StartCoroutine(BeginGame());
+
+			} else*/
 			RestartGame();
+		}
+		if (Q == 1) {
+			Q = 0;
+			RestartGame();
+		
 		}
 	}
 
@@ -27,6 +41,9 @@ public class GameManager : MonoBehaviour {
 	public int StartCorner;
 	public int FinishCorner;
 
+	public GameObject InfoPanel;
+	public Text LevelNumber;
+	public static int LevelCount = 0;
 
 	private Player playerInstance;
 
@@ -83,19 +100,27 @@ public class GameManager : MonoBehaviour {
 			
 	}
 		
+
+	/*public void NewLevel () {
+		StartCoroutine(BeginGame());
+	}*/
+
 	private IEnumerator BeginGame () {		
+		Debug.Log ("123");
 		mazeInstance = Instantiate(mazePrefab) as Maze;
 		yield return StartCoroutine(mazeInstance.Generate());
 		playerInstance = Instantiate(playerPrefab) as Player;
 		//playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 		GenerateStartFinish ();
 
+		LevelNumber.text = "Level " + LevelCount;
+
 		playerInstance.SetLocation(mazeInstance.cells[r1,r2]);
 		StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
 		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[r3,r4].transform.position, Quaternion.identity);
 	}
 		
-	private void RestartGame () {
+	public void RestartGame () {
 		StopAllCoroutines(); //останавливаем запущенную корутину, чтобы не возникало ошибок при генерации лабиринта при уже запущенной корутине
 		Destroy(mazeInstance.gameObject);
 

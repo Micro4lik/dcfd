@@ -50,6 +50,16 @@ public class Player : MonoBehaviour {
 			//Look (currentDirection.GetNextClockwise ());
 		}*/
 	}
-
+			
 }
+
+	/*void OnTriggerEnter(Collider col) {
+		if (col.tag == "FinishSpot") {
+			Debug.Log ("2222");
+			GameManager.LevelCount += 1;
+			GameManager.RestartGame ();
+		}
+		//NewLevel.RestartGame ();
+	}*/
+
 }
