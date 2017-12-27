@@ -12,11 +12,21 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public static int Q = 0;
+	public static int test = 0;
+	public static int impasseCount = 0;
+	//public static int [,] impasseC = new int[10,10];
+	public static int impasseRandom;
+	public static int cor1, cor2;
+	public static List<int[]> qwe = new List<int[]>();
 
 	private void Update () {
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			LevelCount = 0;
 			GameManager.MazeSize = 4;
+			impasseCount = 0;
+			cor1 = 99;
+			cor2 = 99;
+			qwe.Clear ();
 			/*if (Q == 0) {
 				Q = 1;
 				StartCoroutine(BeginGame());
@@ -101,7 +111,7 @@ public class GameManager : MonoBehaviour {
 
 			
 	}
-		
+				
 
 	/*public void NewLevel () {
 		StartCoroutine(BeginGame());
@@ -112,15 +122,135 @@ public class GameManager : MonoBehaviour {
 		yield return StartCoroutine(mazeInstance.Generate());
 		playerInstance = Instantiate(playerPrefab) as Player;
 		//playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-		GenerateStartFinish ();
+		//GenerateStartFinish ();
 
 		LevelNumber.text = "Level " + LevelCount;
 
-		playerInstance.SetLocation(mazeInstance.cells[r1,r2]);
-		StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
-		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[r3,r4].transform.position, Quaternion.identity);
+		//playerInstance.SetLocation(mazeInstance.cells[r1,r2]);
+		//StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
+		//FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[r3,r4].transform.position, Quaternion.identity);
 
 		//Debug.Log (mazeInstance.size.x + " " + mazeInstance.size.z);
+		//Debug.Log (mazeInstance.cells[0, 2]);
+
+		//int x = 0;
+
+		for (int i = 0; i < GameManager.MazeSize; i++) {
+
+			for (int q = 0; q < GameManager.MazeSize; q++) {
+
+				test = 0;
+
+				foreach (Transform child in mazeInstance.cells[i, q].transform) {
+					//Debug.Log (child.name);
+
+					//Debug.Log (mazeInstance.cells[i, q]);
+
+					if (child.name == "MazePassage(Clone)"){
+						test += 1;
+					}
+					if (child.name == "MazeDoor1(Clone)"){
+						test -= 3;
+					}
+
+
+					}
+
+				if (test == 1)
+				{
+
+					int[] inp = { i, q };
+					//foreach (var v in inp) {
+					//	Debug.Log (v);
+					//}
+
+					//List<int[]> dino = new List<int[]> ();
+
+					qwe.Add (inp);
+					//dino.Add (5);
+					//Debug.Log (dino);
+
+					//Debug.Log (qwe);
+
+
+					foreach (var item in qwe[impasseCount]) {
+							
+						//foreach (var qw in inp) {
+						//	Debug.Log (qw);
+						//}
+						Debug.Log (item);
+					}
+
+
+					//qwe.Add (mazeInstance.cells[i, q].coordinates);
+					//Debug.Log (mazeInstance.cells[i, q].coordinates.x);
+
+					//impasseC [impasseCount, 0] = 
+					//impasseC [impasseCount, 0] = mazeInstance.cells[i, q];
+
+					//impasseC [i, q] = impasseCount;
+
+					//impasseC [0, impasseCount] = mazeInstance.cells[q];
+
+					//Debug.Log (impasseC [i, q]);
+
+					Debug.Log (impasseCount);
+
+					impasseCount += 1;
+
+
+
+					Debug.Log ("Это тупик!");
+					Debug.Log (mazeInstance.cells[i, q]);
+				}
+
+			}
+
+		}
+
+		GenerateStartFinish1 ();
+
+		Debug.Log ("Number of random impasse: " + StartCorner);
+
+		int[] massiv = qwe [StartCorner];
+
+		cor1 = massiv [0];
+		cor2 = massiv [1];
+
+		Debug.Log ("1: " + cor1);
+		Debug.Log ("2: " + cor2);
+
+		playerInstance.SetLocation(mazeInstance.cells[cor1,cor2]);
+
+		StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
+
+		int[] massiv1 = qwe [FinishCorner];
+
+		cor1 = massiv1 [0];
+		cor2 = massiv1 [1];
+
+		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[cor1,cor2].transform.position, Quaternion.identity);
+
+		//for (int i = 0; i < 10; i++) {
+		//	RestartGame();
+		//}
+
+		//Debug.Log ("Количество тупиков = " + impasseCount);
+		//impasseCount = 0;
+
+	}
+
+	public void GenerateStartFinish1 () {
+
+		//qwe.Count
+		StartCorner = Random.Range (0, qwe.Count);
+
+		//Debug.Log (qwe.Count);
+
+		FinishCorner = Random.Range (0, qwe.Count);
+		while (StartCorner == FinishCorner)
+		{FinishCorner = Random.Range (0, qwe.Count);}
+			
 	}
 		
 	public void RestartGame () {

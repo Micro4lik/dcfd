@@ -81,14 +81,20 @@ public class Maze : MonoBehaviour {
 
 	public IEnumerator Generate () {
 		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+		//WaitForSeconds delay = new WaitForSeconds(0);
 		cells = new MazeCell[GameManager.MazeSize, GameManager.MazeSize];
 		//cells = new MazeCell[size.x, size.z];
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
 		while (activeCells.Count > 0) {
 			yield return delay;
+			//Debug.Log ("123");
 			DoNextGenerationStep(activeCells);
+			//Debug.Log (cells[size.x, size.z]);
 		}
+
+		//Debug.Log (cells);
+
 	}
 
 	public IntVector2 RandomCoordinates {
