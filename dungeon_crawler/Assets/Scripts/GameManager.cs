@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
 	public int r1, r2, r3, r4;
 
-	private void Start () {
-		StartCoroutine(BeginGame());
+	private void Start ()
+	{
+		StartCoroutine (BeginGame ());
 	}
 
 	public static int Q = 0;
@@ -17,26 +19,28 @@ public class GameManager : MonoBehaviour {
 	//public static int [,] impasseC = new int[10,10];
 	public static int impasseRandom;
 	public static int cor1, cor2;
-	public static List<int[]> qwe = new List<int[]>();
+	public static List<int[]> qwe = new List<int[]> ();
 
-	private void Update () {
-		if (Input.GetKeyDown(KeyCode.Space)) {
+	private void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.Space)) {
 			LevelCount = 0;
 			GameManager.MazeSize = 4;
 			impasseCount = 0;
 			cor1 = 99;
 			cor2 = 99;
 			qwe.Clear ();
-			/*if (Q == 0) {
-				Q = 1;
-				StartCoroutine(BeginGame());
-
-			} else*/
-			RestartGame();
+			//ChestDummy.Clear ();
+			RestartGame ();
 		}
 		if (Q == 1) {
 			Q = 0;
-			RestartGame();
+			impasseCount = 0;
+			cor1 = 99;
+			cor2 = 99;
+			qwe.Clear ();
+			//ChestDummy.Clear ();
+			RestartGame ();
 		
 		}
 	}
@@ -47,6 +51,9 @@ public class GameManager : MonoBehaviour {
 	private GameObject StartDummy;
 	public GameObject FinishPrefab;
 	private GameObject FinishDummy;
+
+	public GameObject ChestPrefab;
+	public static List<GameObject> ChestDummy = new List<GameObject> ();
 
 
 	public int StartCorner;
@@ -63,15 +70,16 @@ public class GameManager : MonoBehaviour {
 
 	private Maze mazeInstance;
 
-	public void GenerateStartFinish () {
+	public void GenerateStartFinish ()
+	{
 
 		StartCorner = Random.Range (0, 4);
 		FinishCorner = Random.Range (0, 4);
-		while (StartCorner == FinishCorner)
-		{FinishCorner = Random.Range (0, 4);}
+		while (StartCorner == FinishCorner) {
+			FinishCorner = Random.Range (0, 4);
+		}
 			
-		switch (StartCorner)
-		{
+		switch (StartCorner) {
 		case 0:
 			r1 = Random.Range (0, 2);
 			r2 = Random.Range (0, 2);
@@ -89,8 +97,7 @@ public class GameManager : MonoBehaviour {
 			r2 = Random.Range (mazeInstance.cells.GetUpperBound (0) - 1, mazeInstance.cells.GetUpperBound (0) + 1);
 			break; 
 		}
-		switch (FinishCorner)
-		{
+		switch (FinishCorner) {
 		case 0:
 			r3 = Random.Range (0, 2);
 			r4 = Random.Range (0, 2);
@@ -111,29 +118,15 @@ public class GameManager : MonoBehaviour {
 
 			
 	}
-				
 
-	/*public void NewLevel () {
-		StartCoroutine(BeginGame());
-	}*/
 
-	private IEnumerator BeginGame () {		
-		mazeInstance = Instantiate(mazePrefab) as Maze;
-		yield return StartCoroutine(mazeInstance.Generate());
-		playerInstance = Instantiate(playerPrefab) as Player;
-		//playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-		//GenerateStartFinish ();
+	private IEnumerator BeginGame ()
+	{		
+		mazeInstance = Instantiate (mazePrefab) as Maze;
+		yield return StartCoroutine (mazeInstance.Generate ());
+		playerInstance = Instantiate (playerPrefab) as Player;
 
 		LevelNumber.text = "Level " + LevelCount;
-
-		//playerInstance.SetLocation(mazeInstance.cells[r1,r2]);
-		//StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
-		//FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[r3,r4].transform.position, Quaternion.identity);
-
-		//Debug.Log (mazeInstance.size.x + " " + mazeInstance.size.z);
-		//Debug.Log (mazeInstance.cells[0, 2]);
-
-		//int x = 0;
 
 		for (int i = 0; i < GameManager.MazeSize; i++) {
 
@@ -142,66 +135,31 @@ public class GameManager : MonoBehaviour {
 				test = 0;
 
 				foreach (Transform child in mazeInstance.cells[i, q].transform) {
-					//Debug.Log (child.name);
 
-					//Debug.Log (mazeInstance.cells[i, q]);
-
-					if (child.name == "MazePassage(Clone)"){
+					if (child.name == "MazePassage(Clone)") {
 						test += 1;
 					}
-					if (child.name == "MazeDoor1(Clone)"){
+					if (child.name == "MazeDoor1(Clone)") {
 						test -= 3;
 					}
+							
+				}
 
-
-					}
-
-				if (test == 1)
-				{
+				if (test == 1) {
 
 					int[] inp = { i, q };
-					//foreach (var v in inp) {
-					//	Debug.Log (v);
-					//}
-
-					//List<int[]> dino = new List<int[]> ();
 
 					qwe.Add (inp);
-					//dino.Add (5);
-					//Debug.Log (dino);
 
-					//Debug.Log (qwe);
-
-
-					foreach (var item in qwe[impasseCount]) {
-							
-						//foreach (var qw in inp) {
-						//	Debug.Log (qw);
-						//}
+					foreach (var item in qwe[impasseCount]) {							
 						Debug.Log (item);
 					}
 
-
-					//qwe.Add (mazeInstance.cells[i, q].coordinates);
-					//Debug.Log (mazeInstance.cells[i, q].coordinates.x);
-
-					//impasseC [impasseCount, 0] = 
-					//impasseC [impasseCount, 0] = mazeInstance.cells[i, q];
-
-					//impasseC [i, q] = impasseCount;
-
-					//impasseC [0, impasseCount] = mazeInstance.cells[q];
-
-					//Debug.Log (impasseC [i, q]);
-
 					Debug.Log (impasseCount);
-
 					impasseCount += 1;
 
-
-
 					Debug.Log ("Это тупик!");
-					Debug.Log (mazeInstance.cells[i, q]);
+					Debug.Log (mazeInstance.cells [i, q]);
 				}
 
 			}
@@ -220,7 +178,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log ("1: " + cor1);
 		Debug.Log ("2: " + cor2);
 
-		playerInstance.SetLocation(mazeInstance.cells[cor1,cor2]);
+		playerInstance.SetLocation (mazeInstance.cells [cor1, cor2]);
 
 		StartDummy = Instantiate (StartPrefab, playerInstance.transform.position, Quaternion.identity);
 
@@ -229,46 +187,81 @@ public class GameManager : MonoBehaviour {
 		cor1 = massiv1 [0];
 		cor2 = massiv1 [1];
 
-		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells[cor1,cor2].transform.position, Quaternion.identity);
+		FinishDummy = Instantiate (FinishPrefab, mazeInstance.cells [cor1, cor2].transform.position, Quaternion.identity);
 
-		//for (int i = 0; i < 10; i++) {
-		//	RestartGame();
-		//}
-
-		//Debug.Log ("Количество тупиков = " + impasseCount);
-		//impasseCount = 0;
+		CreateChests ();
 
 	}
 
-	public void GenerateStartFinish1 () {
+	public void GenerateStartFinish1 ()
+	{
 
-		//qwe.Count
 		StartCorner = Random.Range (0, qwe.Count);
-
-		//Debug.Log (qwe.Count);
-
 		FinishCorner = Random.Range (0, qwe.Count);
-		while (StartCorner == FinishCorner)
-		{FinishCorner = Random.Range (0, qwe.Count);}
+		while (StartCorner == FinishCorner) {
+			FinishCorner = Random.Range (0, qwe.Count);
+		}
 			
 	}
-		
-	public void RestartGame () {
-		StopAllCoroutines(); //останавливаем запущенную корутину, чтобы не возникало ошибок при генерации лабиринта при уже запущенной корутине
-		Destroy(mazeInstance.gameObject);
+
+	public void CreateChests ()
+	{
+
+		Debug.Log ("Try create chest" + qwe.Count);
+
+		for (int i = 0; i < qwe.Count; i++) {
+
+			if ((i == StartCorner) || (i == FinishCorner)) {
+				Debug.Log ("Nedostatochto tupikov.");
+				Debug.Log ("i = " + i + " SC = " + StartCorner + " FC = " + FinishCorner);
+				//break;
+				continue;
+			}
+
+			Debug.Log ("Vishli za cikl");
+
+			int[] impasse = qwe [i];
+
+			int c1 = impasse [0];
+			int c2 = impasse [1];
+
+			ChestDummy.Add (Instantiate (ChestPrefab, mazeInstance.cells [c1, c2].transform.position, Quaternion.identity)); //массив сундуков, чтобы дестроить сразу несколько
+
+		}
+
+
+	}
+
+	public void RestartGame ()
+	{
+		StopAllCoroutines (); //останавливаем запущенную корутину, чтобы не возникало ошибок при генерации лабиринта при уже запущенной корутине
+		Destroy (mazeInstance.gameObject);
 
 		if (StartDummy != null) {
-			Destroy(StartDummy.gameObject);
+			Destroy (StartDummy.gameObject);
 		}
 
 		if (FinishDummy != null) {
-			Destroy(FinishDummy.gameObject);
+			Destroy (FinishDummy.gameObject);
 		}
 
-		if (playerInstance != null) {
-			Destroy(playerInstance.gameObject);
+		/*if (ChestDummy != null) {
+			Destroy (ChestDummy.gameObject);
+		}*/
+
+		if (ChestDummy != null) {
+			foreach (var chest in ChestDummy) {	
+				Destroy (chest);
+			}
+
+			ChestDummy.Clear ();
 		}
-			
-		StartCoroutine(BeginGame());
+
+
+		if (playerInstance != null) {
+			Destroy (playerInstance.gameObject);
+		}
+						
+		StartCoroutine (BeginGame ());
 	}
 }

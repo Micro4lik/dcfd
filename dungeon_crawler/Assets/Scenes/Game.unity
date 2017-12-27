@@ -306,6 +306,8 @@ MonoBehaviour:
     type: 2}
   FinishPrefab: {fileID: 1044635382220494, guid: 6571f75f7bc10c94fa3ce7570bbef7d8,
     type: 2}
+  ChestPrefab: {fileID: 1632052825836748, guid: e6fd1715965d63043a413dea8f583622,
+    type: 2}
   StartCorner: 0
   FinishCorner: 0
   InfoPanel: {fileID: 312787186}
