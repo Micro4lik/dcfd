@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dungeon_crawler", "Assembly-CSharp.csproj", "{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dungeon_crawler", "Assembly-CSharp-Editor.csproj", "{BA32E4EB-CA15-F197-8C5F-283EADE05701}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59F2D6B2-4D21-65D8-1BD0-242F2CD6E90A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA32E4EB-CA15-F197-8C5F-283EADE05701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA32E4EB-CA15-F197-8C5F-283EADE05701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA32E4EB-CA15-F197-8C5F-283EADE05701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA32E4EB-CA15-F197-8C5F-283EADE05701}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

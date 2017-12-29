@@ -51,23 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ProceduralToolkit\Editor\MeshFilterExtension.cs" />
-     <Compile Include="Assets\ProceduralToolkit\Editor\ProceduralToolkitMenu.cs" />
-     <Compile Include="Assets\ProceduralToolkit\Examples\BuildingGenerator\Editor\BuildingGeneratorConfiguratorEditor.cs" />
-     <Compile Include="Assets\ProceduralToolkit\Examples\ChairGenerator\Editor\ChairGeneratorConfiguratorEditor.cs" />
-     <Compile Include="Assets\ProceduralToolkit\Examples\LowPolyTerrainGenerator\Editor\LowPolyTerrainGeneratorConfiguratorEditor.cs" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Standard Vertex Color.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Gradient Skybox.shader" />
-     <None Include="Assets\ProceduralToolkit\Examples\CharacterGenerator\names.txt" />
-     <None Include="Assets\ProceduralToolkit\Examples\CharacterGenerator\Sprites\license.txt" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug UV1.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Bitangents.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Unlit Vertex Color.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Diffuse Vertex Color.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Normals.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug UV2.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Specular Vertex Color.shader" />
-     <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Tangents.shader" />
+     <Compile Include="Assets\TornadoBanditsStudio\Editor\TBS_EditorInitializer.cs" />
+     <Compile Include="Assets\TornadoBanditsStudio\Editor\TBS_PresentationWindow.cs" />
+     <None Include="Assets\Easy DG Assets 1 - Wood + Stone\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programs/Unity5.5.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

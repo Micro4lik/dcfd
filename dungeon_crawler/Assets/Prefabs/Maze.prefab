@@ -60,7 +60,7 @@ MonoBehaviour:
   generationStepDelay: 0
   passagePrefab: {fileID: 114319083659360626, guid: 8a44eed8a68091047bbb40614ad828b7,
     type: 2}
-  wallPrefab: {fileID: 114636805521439696, guid: 388af4fc8fe277d40a6deb2490401c07,
+  wallPrefab: {fileID: 114784842611237132, guid: c73cdd18e4bda864f8ed57d6df7288e3,
     type: 2}
   doorPrefab: {fileID: 114031143850425260, guid: 4bb9baf8283244942bb438a28757b049,
     type: 2}
